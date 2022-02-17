@@ -38,30 +38,15 @@ public class ExportFactory {
 
     }
 
-    @Pointcut("@annotation(com.export.tools.annotation.Test)")
-    public void testPoint(){
-
-    }
-
-    @Around("testPoint()")
-    public void test(){
-        log.info("切面无问题");
-    }
-
     @Around("excelPoint()")
     public void excelAround(ProceedingJoinPoint joinPoint) throws Throwable {
-        log.info("环绕执行");
         response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-//        Class<?> targetCls = joinPoint.getTarget().getClass();
-//        ExcelFile excelFile = targetCls.getAnnotation(ExcelFile.class);
-//        sheet = workbook.createSheet(excelFile.fileValue());
         joinPoint.proceed();
 
     }
 
     @AfterReturning(value = "excelPoint()", returning="returnValue")
     public void excelCall(JoinPoint jp, Object returnValue) throws Throwable {
-        log.info("解析数据");
         String name = jp.getSignature().getName();
         List<String> head = null;
         List<List<String>> data = null;

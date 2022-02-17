@@ -5,8 +5,7 @@ import com.export.tools.demo.model.export.ExportService;
 import com.export.tools.dto.ExcelRecordDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author chenxianrui
